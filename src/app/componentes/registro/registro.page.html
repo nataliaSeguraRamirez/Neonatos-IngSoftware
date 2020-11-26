@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color = "secondary">
+    <ion-title><center>Registro</center></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img class = "icon" src= "assets/icon/icon.png">
+  <ion-item>
+    <ion-label position = "floating">Nombre del usuario</ion-label>
+    <ion-input type = "text" [(ngModel)]="nombre" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Género</ion-label>
+    <ion-select placeholder="Select" [(ngModel)]="genero">
+      <ion-select-option value="m">Mujer</ion-select-option>
+      <ion-select-option value="h">Hombre</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de usuario</ion-label>
+    <ion-select placeholder= "Select" [(ngModel)]="TU" id = "TU">
+      <ion-select-option value='a'>Acudiente del neonato</ion-select-option>
+      <ion-select-option value="pS">Profesional de la salud</ion-select-option>
+      <ion-select-option value="aD">Administrador</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de documento</ion-label>
+    <ion-select placeholder="Select" [(ngModel)]="TD">
+      <ion-select-option value="cc">C.C.</ion-select-option>
+      <ion-select-option value="ce">C.E</ion-select-option>
+      <ion-select-option value="p">Pasaporte</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position = "floating">Número del documento</ion-label>
+    <ion-input type = "number" [(ngModel)]="NoDocumento"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position = "floating">Número del contacto</ion-label>
+    <ion-input type = "number" [(ngModel)]="NoContacto"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position = "floating">Correo electrónico</ion-label>
+    <ion-input type = "text" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position = "floating">Contraseña</ion-label>
+    <ion-input type = "password" [(ngModel)]="password" name = "password"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="TU == 'a'">    
+    <ion-label position = "floating">Dirección del domicilio </ion-label>
+    <ion-input type = "text" [(ngModel)]="direccion"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="TU == 'a'">    
+    <ion-label position = "floating">Nombre del neonato </ion-label>
+    <ion-input type = "text" [(ngModel)]="nombreNeonato" ></ion-input>
+  </ion-item>
+  <ion-item *ngIf="TU == 'a'">    
+    <ion-label position = "floating">Edad </ion-label>
+    <ion-input type = "text" [(ngModel)]="edad"></ion-input>
+  </ion-item>
+  <ion-button color = "secondary"(click) = "OnSumitRegister()"expand= "block">Registrar</ion-button>
+  <br>
+  <p text-center routerLink="/home">
+    <center>Ya tiene cuenta</center>
+  </p>
+
+</ion-content>

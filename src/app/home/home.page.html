@@ -1,0 +1,34 @@
+<ion-header [translucent]="false">
+  <ion-toolbar color = "secondary">
+    <ion-title color="dark" style = "text-align: right" (click)="Onlogout()">
+      <u><small>Cerrar sesión</small></u>
+    </ion-title>
+    <ion-title>
+      Incio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item>
+      <ion-item >
+        <ion-avatar slot= "start">
+          <ion-img src = "assets/icon/PERSONA1.jpg"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2><b>Bebe 1</b></h2>
+          <h3>La variables fisiologicas</h3>
+          <h4>Nombre del padre</h4>
+        </ion-label>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button routerLink="/registro">
+      <ion-icon name="server-outline"></ion-icon>
+      <ion-label>Registro</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
