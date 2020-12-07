@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil del Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img src="../../../assets/icon/Perfil.jpg" alt="Profile picture" class="profile-picture">
+        </ion-col>
+      </ion-row>
+      <ion-card-header>
+        <ion-card-subtitle>{{user.tipoUsuario}}</ion-card-subtitle>
+        <ion-card-title><h1>{{user.name}}</h1></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-list-header>
+            Contacto
+          </ion-list-header>
+          <ion-item>
+            <ion-icon name='call' item-start></ion-icon>
+            <a href="tel:{{user.numeroContacto}}">{{user.numeroContacto}}</a>
+          </ion-item>
+    
+          <ion-item>
+            <ion-icon name='mail' item-start></ion-icon>
+            <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a>
+          </ion-item>
+        </ion-list>
+        <p>
+          <ion-chip outline color="primary" (click) = "modificarUsuario()">
+            <ion-icon name="pencil-outline"></ion-icon>
+            <ion-label>Editar Usuario</ion-label>
+          </ion-chip>
+          <ion-chip outline color="secondary" *ngIf="user.tipoUsuario == 'Personal de la salud'" (click) = "anadirNeonato()">
+            <ion-icon name="person-add-outline"></ion-icon>
+            <ion-label>Añadir neonato</ion-label>
+          </ion-chip>
+        </p>
+      </ion-card-content>
+    </ion-grid>
+  </ion-card>
+</ion-content>

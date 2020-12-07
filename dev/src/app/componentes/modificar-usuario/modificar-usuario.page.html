@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>modificar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked" >Nombre del usuario</ion-label>
+    <ion-input type = "text" [(ngModel)]="nombre" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Género</ion-label>
+    <ion-select placeholder="Select" [(ngModel)]="genero" id = "genero" value ={{genero}}>
+      <ion-select-option value="m">Mujer</ion-select-option>
+      <ion-select-option value="h">Hombre</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de usuario</ion-label>
+    <ion-select placeholder= "Select" [(ngModel)]="tipoUsuario" id = "tipoUsuario" value = {{tipoUsuario}}>
+      <ion-select-option value="a">Acudiente del neonato</ion-select-option>
+      <ion-select-option value="pS">Profesional de la salud</ion-select-option>
+      <ion-select-option value="aD">Administrador</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de documento</ion-label>
+    <ion-select placeholder="Select" [(ngModel)]="tipoDocumento" id = 'tipoDocumento' value ={{tipoDocumento}}>
+      <ion-select-option value="cc">C.C.</ion-select-option>
+      <ion-select-option value="ce">C.E</ion-select-option>
+      <ion-select-option value="p">Pasaporte</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Número del documento</ion-label>
+    <ion-input type = "number" [(ngModel)]="NoDocumento"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Número del contacto</ion-label>
+    <ion-input type = "number" [(ngModel)]="NoContacto"></ion-input>
+  </ion-item>
+  <ion-button color = "secondary"(click) = "modificar()"expand= "block">Modificar</ion-button>
+</ion-content>

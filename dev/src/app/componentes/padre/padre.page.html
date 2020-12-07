@@ -1,9 +1,43 @@
-<ion-header>
+<ion-header [translucent]="false">
   <ion-toolbar>
-    <ion-title>padre</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Bienvenido {{user.name}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
-</ion-content>
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Card</ion-title>
+    </ion-toolbar>
+  </ion-header>,
+  <ion-content fullscreen>
+    <ion-card>
+      <center>
+        <img src="../../../assets/icon/favicon.png" />
+      </center>
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>Madison, WI</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-app>
+<div>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button routerLink="/cambio-contrasena">
+      <ion-icon name="key-outline"></ion-icon>
+      <ion-label>Cambio de contraseña</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="Onlogout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label>Salir</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</div>

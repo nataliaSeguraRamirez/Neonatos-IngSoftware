@@ -28,11 +28,31 @@ const routes: Routes = [
   },
   {
     path: 'padre',
-    loadChildren: () => import('./componentes/padre/padre.module').then( m => m.PadrePageModule)
+    loadChildren: () => import('./componentes/padre/padre.module').then( m => m.PadrePageModule), canActivate: [AuthGuard]
   },
   {
     path: 'personal-salud',
-    loadChildren: () => import('./componentes/personal-salud/personal-salud.module').then( m => m.PersonalSaludPageModule)
+    loadChildren: () => import('./componentes/personal-salud/personal-salud.module').then( m => m.PersonalSaludPageModule),canActivate: [AuthGuard]
+  },
+  {
+    path: 'principal',
+    loadChildren: () => import('./componentes/principal/principal.module').then( m => m.PrincipalPageModule),canActivate: [AuthGuard]
+  },
+  {
+    path: 'cambio-contrasena',
+    loadChildren: () => import('./componentes/cambio-contrasena/cambio-contrasena.module').then( m => m.CambioContrasenaPageModule),canActivate: [AuthGuard]
+  },
+  {
+    path: 'usurios/:id',
+    loadChildren: () => import('./componentes/usurios/usurios.module').then( m => m.UsuriosPageModule), canActivate: [AuthGuard]
+  },
+  {
+    path: 'modificar-usuario/:id',
+    loadChildren: () => import('./componentes/modificar-usuario/modificar-usuario.module').then( m => m.ModificarUsuarioPageModule), canActivate: [AuthGuard]
+  },
+  {
+    path: 'anadir-bebe/:id',
+    loadChildren: () => import('./componentes/anadir-bebe/anadir-bebe.module').then( m => m.AnadirBebePageModule)
   },
 ];
 

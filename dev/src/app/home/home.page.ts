@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { fchmod } from 'fs';
 import { AuthService} from "../servicios/auth.service";
-import {BebesService} from "../servicios/bebes.service";
-interface chat{
-  nombre: string,
-  img: string,
-  nombrePadre:string,
-  frecuenciaCardica: number,
-  SpO2: number,
-  id:string,
-}
+import { Router } from "@angular/router";
+import {LoginPage} from "../componentes/login/login.page"
+import {UsuariosService, usuario} from "../servicios/usuarios.service";
+import { isNullOrUndefined } from 'util';
+import firebase from 'firebase/app';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,19 +13,17 @@ interface chat{
 })
 export class HomePage {
 
-  public bebes : any = [];
-
-  constructor(public authServicie: AuthService, public bebeservice:BebesService) {}
+  private uid: any;
+  private user: any;
+  constructor(public authServicie: AuthService, public usuarioService:UsuariosService,public router: Router) {
+    this.uid = this.authServicie.getUid();
+  }
   Onlogout(){
     this.authServicie.logout();
   }
   ngOnInit(){
-    this.bebeservice.getBebe().subscribe(chats =>{
-      chats.map(chat=>{
-        const data : chat = chat.payload.doc.data() as chat; 
-        data.id = chat.payload.doc.id;
-        this.bebes.push(data);
-      });
-    });
+    this.uid = this.authServicie.getUid();
+    this.user = this.usuarioService.getUsuario(this.uid);
+    console.log(this.user);
   }
 }
