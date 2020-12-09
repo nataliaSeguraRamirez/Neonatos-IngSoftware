@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registros de {{bebe.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid-padding>
+    <ion-row class="nameClass" justify-content-center align-items-center style="font-size:13px;color: #faf9f9;background-color: #000000">
+      <ion-col>
+        <div text-center>
+            <strong>Fecha</strong>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+            <strong>Hora</strong>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+            <strong>Frecuencia Cardiaca</strong>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+            <strong>SpO2</strong>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid-padding>
+  <ion-grid-padding>
+    <ion-row class="nameClass" justify-content-center align-items-center style="font-size:13px;color: #111111;background-color: #ffffff" *ngFor = "let r of registros">
+      <ion-col>
+        <div text-center>
+            {{r.Fecha}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+          {{r.Hora}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+          {{r.FC}}
+        </div>
+      </ion-col>
+      <ion-col>
+        <div text-center>
+          {{r.SpO2}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid-padding>
+</ion-content>
+<div>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button routerLink="/cambio-contrasena">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <ion-label>Ver gráfica</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</div>

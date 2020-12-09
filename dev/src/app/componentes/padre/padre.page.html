@@ -1,4 +1,4 @@
-<ion-header [translucent]="false">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -8,29 +8,38 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-app>
-  <ion-header translucent>
-    <ion-toolbar>
-      <ion-title>Card</ion-title>
-    </ion-toolbar>
-  </ion-header>,
-  <ion-content fullscreen>
-    <ion-card>
-      <center>
-        <img src="../../../assets/icon/favicon.png" />
-      </center>
-      <ion-card-header>
-        <ion-card-subtitle>Destination</ion-card-subtitle>
-        <ion-card-title>Madison, WI</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
-</ion-app>
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <img src="../../../assets/icon/PERSONA1.jpg" alt="Profile picture" class="profile-picture">
+      </ion-col>
+    </ion-row>
+    <ion-card-header>
+      <ion-card-subtitle>{{bebe.nombrePadre}}</ion-card-subtitle>
+      <ion-card-title>{{bebe.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-chip color="danger" *ngIf = "SpO2 > 95 || 90 > SpO2">
+        <ion-label><h1><b>SpO2: </b>{{SpO2}}</h1></ion-label>
+      </ion-chip>
+      <ion-chip color="danger"*ngIf = "FC > 80 || 60 > FC">
+        <ion-label><h1><b>FC: </b>{{FC}}</h1></ion-label>
+      </ion-chip>
+      <ion-chip outline color="success" *ngIf = "SpO2 >= 90 && 95 >= SpO2" >
+        <ion-label><h1><b>SpO2: </b>{{SpO2}}</h1></ion-label>
+      </ion-chip>
+      <ion-chip outline color="success" *ngIf = "FC >= 60 && 80 >= FC">
+        <ion-label><h1><b>FC: </b>{{FC}}</h1></ion-label>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
 <div>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar >
     <ion-tab-button routerLink="/cambio-contrasena">
       <ion-icon name="key-outline"></ion-icon>
       <ion-label>Cambio de contraseña</ion-label>

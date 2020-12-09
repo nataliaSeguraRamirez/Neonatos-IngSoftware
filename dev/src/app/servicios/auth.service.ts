@@ -10,6 +10,7 @@ import firebase from 'firebase/app';
 import { UsuariosService } from './usuarios.service';
 import { isNullOrUndefined } from 'util';
 import { map } from 'rxjs/operators';
+import { BebesService } from './bebes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,12 @@ export class AuthService {
   private password: any; 
   private user: any;
   private users: any[]; 
-  constructor(private AFauth: AngularFireAuth, private router: Router, private db: AngularFirestore, uS: UsuariosService) { 
-    this.users = uS.getUsuarios();    
+  private bebe: any[]; 
+  constructor(private AFauth: AngularFireAuth, private router: Router, private db: AngularFirestore, uS: UsuariosService, bS: BebesService) { 
+    this.users = uS.getUsuarios();  
+    this.bebe = bS.getBebes();  
+    let bebeU = bS.getBebesUsuario(this.uid);
+    bS.getVariablesAux(this.uid);  
   }
   login(email:string, password:string){
     this.password = password; 
@@ -89,6 +94,7 @@ export class AuthService {
           numeroDocumento: NoDocumento,
           uid: uid, 
           numeroContacto: NoContacto,
+          correo : email,
         })
         if (tipoUsuario == 'a'){
           this.db.collection('Bebes').doc(res.user.uid).set({
@@ -98,6 +104,16 @@ export class AuthService {
             edad: edad,
             uidPadre: uid, 
             uidMédico: "",
+            i : 0
+          })
+          this.db.collection('users').doc(res.user.uid).collection('Neonatos').doc(res.user.uid).set({
+            nombrePadre: name,
+            nombre: nombreNeonato, 
+            dirección: direccion1, 
+            edad: edad,
+            uidPadre: uid, 
+            uidMédico: "",
+            i : 0
           })
         }
         resolve(res)

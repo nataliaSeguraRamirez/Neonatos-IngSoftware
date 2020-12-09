@@ -7,6 +7,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-grid>
       <ion-row>
@@ -30,7 +33,7 @@
     
           <ion-item>
             <ion-icon name='mail' item-start></ion-icon>
-            <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a>
+            <a href="mailto:{{user.correo}}">{{user.correo}}</a>
           </ion-item>
         </ion-list>
         <p>
@@ -41,6 +44,9 @@
           <ion-chip outline color="secondary" *ngIf="user.tipoUsuario == 'Personal de la salud'" (click) = "anadirNeonato()">
             <ion-icon name="person-add-outline"></ion-icon>
             <ion-label>Añadir neonato</ion-label>
+          </ion-chip><ion-chip outline color="tertiary" *ngIf="user.tipoUsuario == 'Personal de la salud' || user.tipoUsuario == 'Acudiente del neonato'" (click) = "mostrarNeonatos()">
+            <ion-icon name="list-outline"></ion-icon>
+            <ion-label>Neonatos</ion-label>
           </ion-chip>
         </p>
       </ion-card-content>

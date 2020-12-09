@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import {UsuariosService} from "../../servicios/usuarios.service";
 import firebase from 'firebase/app';
 import { LoadingController } from '@ionic/angular';
+import { BebesService, Bebe } from 'src/app/servicios/bebes.service';
 interface usuario{
   genero: string,
   nombre: string,
@@ -20,14 +21,14 @@ interface usuario{
 })
 export class LoginPage implements OnInit {
 
-  user: any; 
-  users: any[];
   email: string;
   password: string;
   loadingCtrl: any;
   constructor(private authService: AuthService, public router: Router, 
-              public usuarioService: UsuariosService, public loadingController: LoadingController) { }
-
+              public usuarioService: UsuariosService, public loadingController: LoadingController, 
+              public bebesService : BebesService ) { 
+    /*this.bebesService.getVariablesAux(); */
+  }
   ngOnInit() {
   
     if(this.authService.getUid === undefined){

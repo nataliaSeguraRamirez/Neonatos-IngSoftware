@@ -7,9 +7,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-button class="ion-margin-top" type="submit" (click)="prueba()" expand= "block"> 
-    Continuar 1
-  </ion-button>
   <center>
     <h1><i>Bienvenido</i></h1>
     <ion-label>
@@ -31,7 +28,7 @@
     </ion-button>
   </div>
   <div *ngIf = "user.tipoUsuario == 'Acudiente del neonato'">
-    <ion-button class="ion-margin-top" type="submit" routerLink="/padre"expand= "block"> 
+    <ion-button class="ion-margin-top" type="submit" (click) = "Padre()"expand= "block"> 
       Continuar
     </ion-button>
   </div>

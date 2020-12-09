@@ -52,7 +52,19 @@ const routes: Routes = [
   },
   {
     path: 'anadir-bebe/:id',
-    loadChildren: () => import('./componentes/anadir-bebe/anadir-bebe.module').then( m => m.AnadirBebePageModule)
+    loadChildren: () => import('./componentes/anadir-bebe/anadir-bebe.module').then( m => m.AnadirBebePageModule),  canActivate: [AuthGuard]
+  },
+  {
+    path: 'mostrar-neonato/:id',
+    loadChildren: () => import('./componentes/mostrar-neonato/mostrar-neonato.module').then( m => m.MostrarNeonatoPageModule),canActivate: [AuthGuard]
+  },
+  {
+    path: 'registro-neonato/:id',
+    loadChildren: () => import('./componentes/registro-neonato/registro-neonato.module').then( m => m.RegistroNeonatoPageModule),canActivate: [AuthGuard]
+  },
+  {
+    path: 'ver-neonato',
+    loadChildren: () => import('./componentes/ver-neonato/ver-neonato.module').then( m => m.VerNeonatoPageModule)
   },
 ];
 

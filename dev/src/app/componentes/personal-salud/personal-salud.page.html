@@ -5,13 +5,33 @@
       <ion-back-button ></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Bienvenido
+      Bienvenido {{user.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-searchbar animated></ion-searchbar>
-  <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-list-header>
+      Bebes 
+    </ion-list-header>
+    <ion-item *ngFor = "let b of bebes ; let i = index">
+      <ion-avatar slot="start">
+        <img src="../../../assets/icon/PERSONA1.jpg">
+      </ion-avatar>
+      <ion-label>
+        <h2><b>Nombre: </b> {{b.nombre}}</h2>
+        <h3><b>Nombre del Padre: </b> {{b.nombrePadre}}</h3>
+        <p><b>Edad del Neonato: </b> {{b.edad}}</p>
+      </ion-label>
+      <ion-tab-button (click) = "activarMenu(i)">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-tab-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <div>
   <ion-tab-bar slot="bottom">

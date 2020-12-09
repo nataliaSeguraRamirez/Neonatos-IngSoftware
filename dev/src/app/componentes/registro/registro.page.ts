@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { AlertController } from '@ionic/angular';
 import { isNullOrUndefined } from 'util';
 import  firebase from 'firebase/app';
+import { Camera } from '@capacitor/core/dist/esm/web/camera';
+import { CameraPhoto, CameraResultType, CameraSource, Filesystem, FilesystemDirectory } from '@capacitor/core';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -23,6 +25,7 @@ export class RegistroPage implements OnInit {
   public direccion: string; 
   public nombreNeonato: string; 
   public edad: string; 
+  private photos: any;
   constructor(public alertController: AlertController, private auth: AuthService, public router: Router) { 
     
   }
@@ -80,4 +83,5 @@ export class RegistroPage implements OnInit {
       console.log(auth)
     }).catch(err => console.log(err)); 
   }
+ 
 }

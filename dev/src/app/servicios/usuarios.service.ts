@@ -1,9 +1,10 @@
-import { NgForOf } from '@angular/common';
 import { Injectable } from '@angular/core';
 import{AngularFirestore} from "@angular/fire/firestore";
+import { resolve } from 'dns';
 import firebase from 'firebase/app';
+import { promise } from 'protractor';
 import { map } from "rxjs/operators";
-
+import {Variables} from '../servicios/bebes.service'
 export interface usuario{
   genero: string,
   name: string,
@@ -12,6 +13,7 @@ export interface usuario{
   tipoDocumento: string,
   tipoUsuario:string,
   uid:string,
+  correo: string
 } 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +65,33 @@ export class UsuariosService {
       }); 
       resolve(true)
     });
+  }
+  anadirNeonatoMedico(bebe:any, uid:any){
+    return new Promise ((resolve, reject)=>{
+      this.db.collection('users').doc(uid).collection('Neonatos').doc(bebe.uidPadre).set({
+        nombrePadre: bebe.nombrePadre,
+        nombre: bebe.nombre, 
+        dirección: bebe.dirección, 
+        edad: bebe.edad,
+        uidPadre: bebe.uidPadre, 
+        uidMédico: uid,
+        i: bebe.i
+      });
+      resolve(true)
+    })
+  }
+  modificarUIDMedicoNeonato(bebe:any, uid: any){
+    return new Promise ((resolve, reject)=>{
+      this.db.collection('users').doc(bebe.uidPadre).collection('Neonatos').doc(bebe.uidPadre).set({
+        nombrePadre: bebe.nombre,
+        nombre: bebe.nombrePadre, 
+        dirección: bebe.dirección, 
+        edad: bebe.edad,
+        uidPadre: bebe.uidPadre, 
+        uidMédico: uid,
+        i: bebe.i
+      });
+      resolve(true)
+    })
   }
 }

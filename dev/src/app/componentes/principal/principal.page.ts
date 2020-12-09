@@ -16,12 +16,14 @@ export class PrincipalPage implements OnInit {
   private users: any[];
   private activo: boolean; 
   private myList:any;  
+  private bebes: any[];
+  private bebe1; 
   constructor(private auth: AuthService, private usuariosService: UsuariosService, public alertController: AlertController, 
               private router:Router, private bebe: BebesService) { 
     this.user = usuariosService.getUsuario(auth.getUid);
     this.users = usuariosService.getUsuarios(); 
+    this.bebes = this.bebe.getBebes(); 
     this.activo = false; 
-    this.bebe.getVariables();
   }
   Onlogout(){
     this.auth.logout();
@@ -34,6 +36,7 @@ export class PrincipalPage implements OnInit {
     this.auth.delete(user.uid);
   }
   verMas(index:number){
+    this.bebe1 = this.bebe.getBebesUsuario(this.usuariosService.getUsuarioIndex(index).uid); 
     console.log(this.router.navigate(['usurios', index]));
   }
   modificarUsuario(index: number){
@@ -74,8 +77,24 @@ export class PrincipalPage implements OnInit {
     })
     ;(await alert).present(); 
   }
+  doRefresh(event) {
+    this.users = this.usuariosService.getUsuarios(); 
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+  doRefresh1(event) {
+    this.users =  this.usuariosService.getUsuarios(); 
+    setTimeout(() => {
+      this.doRefresh(event)
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
   ngOnInit() {
-    
+    this.doRefresh1(event);
   }
 
 }

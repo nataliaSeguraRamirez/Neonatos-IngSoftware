@@ -3,16 +3,19 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Bebes Registrados</ion-title>
+    <ion-title>{{user.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-list-header>
-      Bebes Registrados
+      Bebes 
     </ion-list-header>
-    <ion-item *ngFor = "let b of bebes ; let i = index">
+    <ion-item *ngFor = "let b of bebe ; let i = index">
       <ion-avatar slot="start">
         <img src="../../../assets/icon/PERSONA1.jpg">
       </ion-avatar>
@@ -21,9 +24,6 @@
         <h3><b>Nombre del Padre: </b> {{b.nombrePadre}}</h3>
         <p><b>Edad del Neonato: </b> {{b.edad}}</p>
       </ion-label>
-      <ion-tab-button (click) = "activarMenu(i)">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-tab-button>
     </ion-item>
   </ion-list>
 </ion-content>
